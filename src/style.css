@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* --glowing-color1: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #49ff18, 0 0 30px #49ff18, 0 0 40px #49ff18,
+    0 0 55px #49ff18, 0 0 75px #49ff18, 2px 2px 2px rgba(203, 206, 49, 0); */
+  --glowing-color: 0 0 10px #ffffff, -40px -28px 2px rgba(206, 185, 23, 0);
+}
+
+@font-face {
+  font-family: "Starjout";
+  src: url("./fonts/Starjout.ttf");
+}
+
+@font-face {
+  font-family: "Starjhol";
+  src: url("./fonts/Starjhol.ttf");
+}
+
+@font-face {
+  font-family: "STJEDISE";
+  src: url("./fonts/STJEDISE.TTF");
+}
+
+body {
+  font-size: 100%;
+  background-color: black;
+  color: white;
+}
+
+header > nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2rem 2rem 2rem;
+  font-size: 1.5rem;
+}
+
+#projectName {
+  font-family: "Starjhol", Arial, Helvetica, sans-serif;
+  color: yellow;
+  text-shadow: var(--glowing-color);
+  padding: 2rem;
+}
+
+#navBarElements > a {
+  padding: 2rem;
+  text-decoration: none;
+  color: yellow;
+  text-shadow: var(--glowing-color);
+  font-family: "Starjout", Arial, Helvetica, sans-serif;
+  /* border: 1px solid black; */
+}
+
+#navBarElements > a:hover {
+  cursor: pointer;
+  font-family: "STJEDISE", Arial, Helvetica, sans-serif;
+  font-size: 1.8rem;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#searchBar {
+  margin: 0 2rem;
+  padding: 1rem;
+  width: 30rem;
+  border-radius: 2rem;
+  border: 3px solid yellow;
+  background-color: black;
+}
+
+#searchBar:hover {
+  box-shadow: var(--glowing-color);
+}
+
+#searchBar::placeholder {
+  font-family: "STJEDISE", Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  color: yellow;
+  opacity: 0.5;
+}
+
+/* Typescript elements */
+
+#results {
+  margin: 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.divContainer {
+  font-family: "STJEDISE", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+
+  width: 15rem;
+  height: 20rem;
+  border: 1px solid yellow;
+}
