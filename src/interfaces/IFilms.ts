@@ -12,9 +12,6 @@ export interface IFilmsResult {
 }
 
 export interface Properties {
-  starships: string[]
-  vehicles: string[]
-  planets: string[]
   producer: string
   title: string
   episode_id: number
@@ -23,5 +20,8 @@ export interface Properties {
   opening_crawl: string
   characters: string[]
   species: string[]
+  starships: string[]
+  vehicles: string[]
+  planets: string[]
   url: string
 }

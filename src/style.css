@@ -28,14 +28,14 @@
 body {
   font-size: 100%;
   background-color: black;
-  color: white;
+  color: #f5f5dc;
 }
 
 header > nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 2rem 2rem 2rem;
+  margin: 0 2rem;
   font-size: 1.5rem;
 }
 
@@ -61,6 +61,11 @@ header > nav {
   font-size: 1.8rem;
 }
 
+#centerSearchBar {
+  display: flex;
+  justify-content: center;
+}
+
 main {
   display: flex;
   align-items: center;
@@ -74,6 +79,8 @@ main {
   border-radius: 2rem;
   border: 3px solid yellow;
   background-color: black;
+  color: #f5f5dc;
+  font-family: "STJEDISE", Arial, Helvetica, sans-serif;
 }
 
 #searchBar:hover {
@@ -90,7 +97,7 @@ main {
 /* Typescript elements */
 
 #results {
-  margin: 0 2rem;
+  margin: 0 2rem rem 2rem;
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
@@ -98,15 +105,13 @@ main {
 
 .divContainer {
   font-family: "STJEDISE", Arial, Helvetica, sans-serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
   overflow: hidden;
-
-  width: 15rem;
-  height: 20rem;
+  padding: 2rem;
+  margin: 2rem;
   border: 1px solid yellow;
+  min-width: 25rem;
 }

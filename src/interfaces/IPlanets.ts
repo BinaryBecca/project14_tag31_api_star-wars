@@ -1,14 +1,30 @@
 export interface IPlanets {
-  message: string
-  total_records: number
-  total_pages: number
-  previous: null
-  next: string
   results: IPlanetsResult[]
 }
 
 export interface IPlanetsResult {
-  uid: string
   name: string
+  url: string
+}
+
+export interface IPlanetDescription {
+  result: IPlanetDescriptionResult
+}
+
+export interface IPlanetDescriptionResult {
+  properties: IPlanetProperties
+  description: string
+}
+
+export interface IPlanetProperties {
+  climate: string
+  surface_water: string
+  name: string
+  diameter: string
+  rotation_period: string
+  terrain: string
+  gravity: string
+  orbital_period: string
+  population: string
   url: string
 }

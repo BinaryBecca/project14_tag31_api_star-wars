@@ -39,7 +39,7 @@ const PEOPLE_URL = `${BASE_URL}/people/`
 
 // #films
 filmsElement.addEventListener("click", async () => {
-  searchBar.style.display = "none"
+  // searchBar.style.display = "none"
   divOutput.innerHTML = ""
 
   try {
@@ -61,18 +61,26 @@ filmsElement.addEventListener("click", async () => {
 function displayFilms(film: IFilmsResult): string {
   const resultAsString = `
 <div>
-<p>${film.description}</p>
 <p>${film.uid}</p>
+<br>
+<p>Title: ${film.properties.title}</p>
+<p>Episode: ${film.properties.episode_id}</p>
+<p>Producer: ${film.properties.producer}</p>
+<p>Director: ${film.properties.director}</p>
+<p>Release date: ${film.properties.release_date}</p>
+<br>
+<p>Opening crawl: ${film.properties.opening_crawl}</p>
 </div>
 `
   return resultAsString
 }
 
 // <p>${film.properties}</p>
+// <p>Starships: ${film.properties.starships.join(", ")}</p>
 
 // #planets
 planetsElement.addEventListener("click", async () => {
-  searchBar.style.display = "none"
+  // searchBar.style.display = "none"
   divOutput.innerHTML = ""
 
   try {
@@ -94,16 +102,17 @@ planetsElement.addEventListener("click", async () => {
 function displayPlanets(planet: IPlanetsResult): string {
   const resultAsString = `
 <div>
-<p>${planet.uid}</p>
-<p>${planet.name}</p>
+<p>Planet: ${planet.name}</p>
 </div>
 `
+  // const planetInformation = document.createElement("button") as HTMLButtonElement
+  // planetInformation.className = "planetInformation"
   return resultAsString
 }
 
 // #people
 peopleElement.addEventListener("click", async () => {
-  searchBar.style.display = "none"
+  // searchBar.style.display = "none"
   divOutput.innerHTML = ""
 
   try {
@@ -125,9 +134,65 @@ peopleElement.addEventListener("click", async () => {
 function displayPeople(people: IPeopleResult): string {
   const resultAsString = `
 <div>
-<p>${people.uid}</p>
-<p>${people.name}</p>
+<p>Person: ${people.name}</p>
 </div>
 `
   return resultAsString
 }
+
+// #searchBar
+//   const searchValue = searchInput.value.trim().toLowerCase();
+// const filteredProducts = products.filter((product) =>
+//     product.title.toLowerCase().includes(searchValue)
+//   );
+searchBar.addEventListener("keypress", async (event) => {
+  if (event.key === "Enter") {
+    divOutput.innerHTML = ""
+    const searchValue = searchBar.value.trim().toLowerCase()
+
+    try {
+      // #films
+      // const FILMS_URL = `${BASE_URL}/films/`
+      // <p>Title: ${film.properties.title}</p>
+      const filmsResp = await fetch(`${FILMS_URL}?title=${searchValue}`)
+      const { result } = (await filmsResp.json()) as IFilms
+
+      result.forEach((filmResult: IFilmsResult) => {
+        const divContainer = document.createElement("div") as HTMLDivElement
+        divContainer.className = "divContainer"
+        divContainer.innerHTML = displayFilms(filmResult)
+        divOutput.appendChild(divContainer)
+      })
+      // #planets
+      // const PLANETS_URL = `${BASE_URL}/planets/`
+      // <p>Planet: ${planet.name}</p>
+      // const planetResp = await fetch(`${PLANETS_URL}?name=${searchValue}`)
+      // // const planetResp = await fetch(PLANETS_URL)
+      // const { results } = (await planetResp.json()) as IPlanets
+
+      // results.forEach((planetResult: IPlanetsResult) => {
+      //   const divContainer = document.createElement("div") as HTMLDivElement
+      //   divContainer.className = "divContainer"
+      //   divContainer.innerHTML = displayPlanets(planetResult)
+      //   divOutput.appendChild(divContainer)
+      // })
+      // #people
+      // const PEOPLE_URL = `${BASE_URL}/people/`
+      // <p>Person: ${people.name}</p>
+      const peopleResp = await fetch(`${PEOPLE_URL}?name=${searchValue}`)
+      console.log(peopleResp)
+      const { results } = (await peopleResp.json()) as IPeople
+      console.log(results)
+
+      results.forEach((peopleResult: IPeopleResult) => {
+        const divContainer = document.createElement("div") as HTMLDivElement
+        divContainer.className = "divContainer"
+        divContainer.innerHTML = displayPeople(peopleResult)
+        divOutput.appendChild(divContainer)
+      })
+    } catch (error) {
+      console.error(error)
+    }
+    event.preventDefault()
+  }
+})
